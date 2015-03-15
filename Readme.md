@@ -8,5 +8,5 @@ jQuery
 
 Usage
 ------
-[https://github.com/steelydylan/formChecker/formChecker.js](drag this link to your bookmark)
+[https://raw.githubusercontent.com/steelydylan/formChecker/master/formChecker.min.js](drag this link to your bookmark)
 
