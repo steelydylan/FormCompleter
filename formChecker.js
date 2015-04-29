@@ -59,11 +59,15 @@ $.fn.serializeObject = function(){
 var $formChecker = $("<div class='formChecker'></div>");
 var $formChecker_box = $("<div class='formChecker_box'></div>");
 var $formChecker_inputBox = $("<div class='formChecker_inputBox'></div>");
-var $formChecker_input = $("<input type='text' class='formChecker_input' placeholder='フォームの要素のIDもしくはクラス名を入力'>");
+var $formChecker_input = $("<input type='text' class='formChecker_input' value='form' placeholder='フォームの要素のIDもしくはクラス名を入力'>");
 var $formChecker_btn = $("<span class='formChecker_btn'>JSONデータの取得</span>");
 var $formChecker_textarea = $("<textarea class='formChecker_textarea'></textarea>");
+var $formChercher_saveBtn = $("<button class='formChercher_bottomBtn formCheckerSave'>データ保存</button>");
+var $formChercher_loadBtn = $("<button class='formChercher_bottomBtn formCheckerLoad'>データロード</button>");
+var $formChercher_autoBtn = $("<button class='formChercher_bottomBtn formCheckerAuto'>データ自動入力</button>");
 $formChecker_inputBox.append($formChecker_input,$formChecker_btn);
 $formChecker_box.append($formChecker_inputBox,$formChecker_textarea);
+$formChecker_box.append($formChercher_saveBtn,$formChercher_loadBtn,$formChercher_autoBtn);
 $formChecker.append($formChecker_box);
 var style = "<style>
 .formChecker{
@@ -121,6 +125,16 @@ var style = "<style>
     width: 100%;
     height: 100px;
 }
+.formChercher_bottomBtn{
+    background-color: #333333;
+    color: #FFF;
+    line-height: 25px;
+    padding: 0 20px;
+    -webkit-border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+            border-top-right-radius: 3px;
+}
 </style>";
 $formChecker.append(style);
 $("body").append($formChecker);
@@ -129,13 +143,65 @@ $(document).on("click",".formChecker",function(e){
 	if($(e.target).hasClass('formChecker')){
 		$(this).remove();
 	}else if($(e.target).hasClass('formChecker_btn')){
-		$(".formChecker_textarea").val(JSON.stringify($(val).serializeObject()));
+		$(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
 	}
 });
 $(document).on("keydown",".formChecker_input",function(e){
 	var val = $(".formChecker_input").val();
 	if(e.which === 13){
-		$(".formChecker_textarea").val(JSON.stringify($(val).serializeObject()));
+		$(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
 	}
+});
+$(document).on("click",".formCheckerSave",function(e){
+    var pathname = location.pathname;
+    var key = $(".formChecker_input").val() + pathname;
+    var val = JSON.stringify($(".formChecker_textarea").val());
+    localStorage.setItem(key,val);
+});
+$(document).on("click",".formCheckerLoad",function(e){
+    var pathname = location.pathname;
+    var key = $(".formChecker_input").val() + pathname;
+    var data = JSON.parse(localStorage.getItem(key));
+    $(".formChecker_textarea").val(data);
+});
+$(document).on("click",".formCheckerAuto",function(e){
+    var data = JSON.parse($(".formChecker_textarea").val());
+    for(var i in data){
+        var $ele = $("[name='"+i+"']");
+        var $eles = $("[name^='"+i+"\\[']");
+        var type = $ele.attr("type") || $eles.attr("type");
+        var val = data[i];
+        if(type == "hidden"){
+            continue;
+        }else if(type == "radio" || type == "checkbox"){
+            if(Array.isArray(val)){
+                $eles.each(function(){
+                    for(var t = 0,n = val.length; t < n; t++){
+                        if($(this).val() == val[t]){
+                            $(this).click();
+                            $(this).prop("checked",true);
+                        }
+                    }
+                });
+            }else{
+                $ele.each(function(){
+                    if($(this).val() == val){
+                        $(this).click();
+                        $(this).prop("checked",true);
+                    }
+                });
+            }
+        }else{
+            if(Array.isArray(val)){
+                var t = 0;
+                $eles.each(function(){
+                    $(this).val(val[t]);
+                    t++;
+                })
+            }else{
+                $ele.val(val);
+            }
+        }
+    }
 });
 })();
