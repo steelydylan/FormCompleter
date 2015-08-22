@@ -2,6 +2,7 @@ FormCompleter
 =======
 A bookmarklet you can get the form data as json
 It also save the json data and complete the form instead of you.
+You can download from [https://raw.githubusercontent.com/steelydylan/FormCompleter/master/dest/FormCompleter.js](here)
 
 How to use ?
 -----
