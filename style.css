@@ -9,6 +9,9 @@ h3{
 	font-size: 20px;
 	font-weight: normal;
 }
+.fc-right{
+	float: right;
+}
 .fc-logoWrap{
 	text-align: center;
 }
@@ -47,12 +50,17 @@ h3{
 	     -o-transition: background-color .2s;
 	        transition: background-color .2s;
 }
+.fc-btn-small{
+	padding: 5px;
+	font-size: 16px;
+}
 .fc-btn:hover{
 	background-color: #f0ad4e;
 }
 
 .fc-table{
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 .fc-table th{
