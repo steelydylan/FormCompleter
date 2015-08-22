@@ -1,10 +1,7 @@
-formChecker
+formCompleter
 =======
 A bookmarklet you can get the form data as json
-
-dependency
-------
-jQuery
+It also save the json data and complete the form instead of you.
 
 Usage
 ------
