@@ -15,10 +15,10 @@
   		"url": "https://github.com/steelydylan/bookmarklet_developer_tool.git"
 	},
 	"settings":{
-		"port":"8002",
+		"port":"8000",
 		"src":"src",
-		"dest":"./",
+		"dest":"dest",
 		"https":false,
-		"js":"formChecker.js"
+		"js":"FormCompleter.js"
 	}
 }
