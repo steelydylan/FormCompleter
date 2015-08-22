@@ -24,3 +24,7 @@ Website
 -----
 [http://steelydylan.github.io/FormCompleter/](http://steelydylan.github.io/FormCompleter/)
 
+License
+-----
+MIT License
+
