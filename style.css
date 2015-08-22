@@ -93,3 +93,69 @@ h3{
 .fc-footer a{
 	color: #FFF;
 }
+svg{
+	cursor: pointer;
+	position: relative;
+	top: 0;
+	-webkit-transition: top .3s;
+	   -moz-transition: top .3s;
+	    -ms-transition: top .3s;
+	     -o-transition: top .3s;
+	        transition: top .3s;
+}
+svg:hover{
+	top: -5px;
+}
+svg [id^=svg_text]{
+	width: 0;
+	-webkit-transition: width .3s;
+	   -moz-transition: width .3s;
+	    -ms-transition: width .3s;
+	     -o-transition: width .3s;
+	        transition: width .3s;
+}
+svg #svg_text1{
+	-webkit-transition: width .3s;
+	   -moz-transition: width .3s;
+	    -ms-transition: width .3s;
+	     -o-transition: width .3s;
+	        transition: width .3s;
+}
+svg #svg_text2{
+	-webkit-transition: width .4s;
+	   -moz-transition: width .4s;
+	    -ms-transition: width .4s;
+	     -o-transition: width .4s;
+	        transition: width .4s;
+}
+svg #svg_text3{
+	-webkit-transition: width .5s;
+	   -moz-transition: width .5s;
+	    -ms-transition: width .5s;
+	     -o-transition: width .5s;
+	        transition: width .5s;
+}
+svg #svg_text4{
+	-webkit-transition: width .6s;
+	   -moz-transition: width .6s;
+	    -ms-transition: width .6s;
+	     -o-transition: width .6s;
+	        transition: width .6s;
+}
+svg #svg_text5{
+	-webkit-transition: width .7s;
+	   -moz-transition: width .7s;
+	    -ms-transition: width .7s;
+	     -o-transition: width .7s;
+	        transition: width .7s;
+}
+svg #svg_text6{
+	-webkit-transition: width .8s;
+	   -moz-transition: width .8s;
+	    -ms-transition: width .8s;
+	     -o-transition: width .8s;
+	        transition: width .8s;
+}
+svg:hover [id^=svg_text]{
+	width:102px;
+}
