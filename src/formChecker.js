@@ -74,7 +74,7 @@
         var $formChecker = $("<div class='formChecker'></div>");
         var html = '<div class="formChecker_box">
            <div class="formChecker_inputBox">
-               <input type="text" class="formChecker_input" value="form" placeholder="Enter the selector of the form (exp. #form .form form">
+               <input type="text" value="form" class="formChecker_input" value="form" placeholder="Enter the selector of the form (exp. #form .form form">
            </div>
            <textarea class="formChecker_textarea" placeholder="If you push Get-Code button, The form Json will be filled in here"></textarea>
            <div class="formChecker_btnWrap">
