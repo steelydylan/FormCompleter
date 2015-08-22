@@ -19,3 +19,7 @@ Features
 -----
 Since the data are saved in the each site's localstrage, There is no need to worry about the saved data
 
+Website
+-----
+[http://steelydylan.github.io/FormCompleter/](http://steelydylan.github.io/FormCompleter/)
+
