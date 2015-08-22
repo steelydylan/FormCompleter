@@ -1,1 +1,0 @@
-javascript:(function(){var newScript = document.createElement('script');newScript.src='http://localhost:8002/formChecker.js?hoge='+ Math.random();document.body.appendChild(newScript);})();
