@@ -1,4 +1,18 @@
 (function(){
+    var notice = function($formChecker,message){
+        var $notice = $("<div class='formChecker_notice'>"+message+"</div>");
+        $formChecker.append($notice);
+        $notice.delay(1).queue(function(next){
+            $(this).addClass("active");
+            next();
+        }).delay(700).queue(function(next){
+            $(this).removeClass('active');
+            next();
+        }).delay(200).queue(function(next){
+            $(this).remove();
+            next();
+        });
+    }
     var initMyBookmarklet = function(){
         $.fn.serializeObject = function(){
             var self = this,
@@ -153,6 +167,24 @@
             border-bottom-right-radius:3px;
             border-top-right-radius:3px;
         }
+        .formChecker_notice{
+            position: fixed;
+            top: 50%;
+            left: 0;
+            background-color:rgba(0,0,0,0);
+            padding: 10px;
+            color:#FFFFFF;
+            text-align: center;
+            width: 100%;
+            -webkit-transition: background-color .2s ease-in;
+               -moz-transition: background-color .2s ease-in;
+                -ms-transition: background-color .2s ease-in;
+                 -o-transition: background-color .2s ease-in;
+                    transition: background-color .2s ease-in;
+        }
+        .formChecker_notice.active{
+            background-color:rgba(0,0,0,0.9);
+        }
         </style>";
         $formChecker.append(style);
         $("body").append($formChecker);
@@ -170,18 +202,21 @@
         $(document).on("click",".formCheckerJson",function(e){
             var val = $(".formChecker_input").val();
             $(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
+            notice($formChecker,"Finished filling in the textarea")
         });
         $(document).on("click",".formCheckerSave",function(e){
             var pathname = location.pathname;
             var key = $(".formChecker_input").val() + pathname;
             var val = JSON.stringify($(".formChecker_textarea").val());
             localStorage.setItem(key,val);
+            notice($formChecker,"The data is saved in the localstorage")
         });
         $(document).on("click",".formCheckerLoad",function(e){
             var pathname = location.pathname;
             var key = $(".formChecker_input").val() + pathname;
             var data = JSON.parse(localStorage.getItem(key));
             $(".formChecker_textarea").val(data);
+            notice($formChecker,"The data is loaded from the localstorage")
         });
         $(document).on("click",".formCheckerAuto",function(e){
             var data = JSON.parse($(".formChecker_textarea").val());
@@ -222,6 +257,7 @@
                     }
                 }
             }
+            notice($formChecker,"Finished filling in the form");
         });
     }
     // check prior inclusion and version
