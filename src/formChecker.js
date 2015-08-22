@@ -58,18 +58,19 @@
             return json;
         };
         var $formChecker = $("<div class='formChecker'></div>");
-        var $formChecker_box = $("<div class='formChecker_box'></div>");
-        var $formChecker_inputBox = $("<div class='formChecker_inputBox'></div>");
-        var $formChecker_input = $("<input type='text' class='formChecker_input' value='form' placeholder='フォームの要素のIDもしくはクラス名を入力'>");
-        var $formChecker_btn = $("<span class='formChecker_btn'>JSONデータの取得</span>");
-        var $formChecker_textarea = $("<textarea class='formChecker_textarea'></textarea>");
-        var $formChercher_saveBtn = $("<button class='formChercher_bottomBtn formCheckerSave'>データ保存</button>");
-        var $formChercher_loadBtn = $("<button class='formChercher_bottomBtn formCheckerLoad'>データロード</button>");
-        var $formChercher_autoBtn = $("<button class='formChercher_bottomBtn formCheckerAuto'>データ自動入力</button>");
-        $formChecker_inputBox.append($formChecker_input,$formChecker_btn);
-        $formChecker_box.append($formChecker_inputBox,$formChecker_textarea);
-        $formChecker_box.append($formChercher_saveBtn,$formChercher_loadBtn,$formChercher_autoBtn);
-        $formChecker.append($formChecker_box);
+        var html = '<div class="formChecker_box">
+           <div class="formChecker_inputBox">
+               <input type="text" class="formChecker_input" value="form" placeholder="Enter the selector of the form (exp. #form .form form">
+           </div>
+           <textarea class="formChecker_textarea" placeholder="If you push Get-Code button, The form Json will be filled in here"></textarea>
+           <div class="formChecker_btnWrap">
+               <button class="formChecker_bottomBtn formCheckerJson">Get Code</button>
+               <button class="formChecker_bottomBtn formCheckerSave">Save</button>
+               <button class="formChecker_bottomBtn formCheckerLoad">Load</button>
+               <button class="formChecker_bottomBtn formCheckerAuto">Auto Fill</button>
+           </div>
+        </div>';
+        $formChecker.append(html);
         var style = "<style>
         .formChecker{
             background-color:rgba(0,0,0,0.3);
@@ -97,13 +98,18 @@
         }
         .formChecker_inputBox{
             width:100%;
-            display:table;
             margin-bottom:5px;
+            border: 1px solid #CCCCCC;
         }
         .formChecker_input{
             width:100%;
             display:table-cell;
             line-height: 25px;
+        }
+        .formChecker_btnWrap{
+            display:table;
+            margin-top:5px;
+            float:right;
         }
         .formChecker_btn{
             display: table-cell;
@@ -121,30 +127,38 @@
             cursor: pointer;
         }
         .formChecker_textarea{
-            -webkit-border-radius: 3px;
-                    border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
             width: 100%;
             height: 100px;
         }
-        .formChercher_bottomBtn{
+        .formChecker_bottomBtn{
             background-color: #333333;
             color: #FFF;
             line-height: 25px;
             padding: 0 20px;
-            -webkit-border-bottom-right-radius: 3px;
-                    border-bottom-right-radius: 3px;
-            -webkit-border-top-right-radius: 3px;
-                    border-top-right-radius: 3px;
+            border:none;
+            -webkit-transition: background-color .3s;
+            -o-transition: background-color .3s;
+            transition: background-color .3s;
+        }
+        .formChecker_bottomBtn:hover{
+            background-color: #AAAAAA;
+        }
+        .formChecker_bottomBtn:first-child{
+            border-bottom-left-radius:3px;
+            border-top-left-radius:3px;
+        }
+        .formChecker_bottomBtn:last-child{
+            border-bottom-right-radius:3px;
+            border-top-right-radius:3px;
         }
         </style>";
         $formChecker.append(style);
         $("body").append($formChecker);
         $(document).on("click",".formChecker",function(e){
-            var val = $(".formChecker_input").val();
             if($(e.target).hasClass('formChecker')){
                 $(this).remove();
-            }else if($(e.target).hasClass('formChecker_btn')){
-                $(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
             }
         });
         $(document).on("keydown",".formChecker_input",function(e){
@@ -152,6 +166,10 @@
             if(e.which === 13){
                 $(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
             }
+        });
+        $(document).on("click",".formCheckerJson",function(e){
+            var val = $(".formChecker_input").val();
+            $(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
         });
         $(document).on("click",".formCheckerSave",function(e){
             var pathname = location.pathname;
