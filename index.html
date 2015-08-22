@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>FormCompleter</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.js"></script>
+</head>
+<body>
+<a href="https://github.com/steelydylan/formCompleter"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+<div class="fc-container">
+	<div class="fc-logoWrap">
+		<img src="logo.png" height="176" width="141" alt="FormCompleter">
+	</div>
+	<div class="fc-hero">
+		<h1>Do you always fill out forms with same contents?</h1>
+		<p>Add this bookmarklet to your bookmark bar</p>
+		<a href="" class="fc-btn" id="formCompleter">FormCompleter</a>
+	</div>
+	<div class="fc-hero">
+		<h2>How to use ?</h2>
+		<ol class="fc-list">
+		<li>Fill in the form as usual</li>
+		<li>Run the bookmarklet</li>
+		<li>Type the form's selector (exp. #form .form form) in the top input element</li>
+		<li>Push the "Get code" button</li>
+		<li>Push the "Save" button, and the form data will be saved in the localstrage</li>
+		<li>Visit the site again and push the load button</li>
+		<li>Push the "Auto fill" button</li>
+		<li>That's it. </li>
+		</ol>
+	</div>
+	<div class="fc-hero">
+		<h2>Features</h2>
+		<p>Since the data are saved in the each site's localstrage, There is no need to worry about the saved data</p>
+	</div>
+	<div class="fc-hero">
+		<h2>Give it a try</h2>
+		<p>After adding the above bookmarklet, Please try using it</p>
+		<form class="fc-form">
+			<table class="fc-table">
+				<tr>
+					<th>First name</th>
+					<td>
+						<input type="text" placeholder="First name" name="firstname">
+					</td>
+				</tr>
+				<tr>
+					<th>Last name</th>
+					<td>
+						<input type="text" placeholder="Last name" name="lastname">
+					</td>
+				</tr>
+				<tr>
+					<th>Address</th>
+					<td>
+						<textarea placeholder="Adress" rows="3" name="address"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+					<label><input type="checkbox" name="remember_me">Remember me</label>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+<footer class="fc-footer">
+	<p>Made with love by <a href="https://github.com/steelydylan/">@steelydylan</a></p>
+</footer>
+<script>
+$.get("https://raw.githubusercontent.com/steelydylan/formCompleter/master/dest/formChecker.js",function(txt){
+	$("#formCompleter").attr("href",txt);
+});
+</script>
+</body>
+</html>
