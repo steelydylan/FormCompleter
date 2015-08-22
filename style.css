@@ -17,7 +17,8 @@ h3{
 	margin-bottom:50px;
 }
 .fc-container{
-	max-width: 767px;
+	max-width: 787px;
+	padding: 0 10px;
 	margin: 0 auto;
 }
 .fc-heading{
