@@ -1,24 +1,27 @@
 {
 	"version": "0.0.1",
-  	"name": "FormCompleter",
+	"name": "FormCompleter",
+	"scripts": {
+		"start": "gulp"
+	},
 	"description": "This is a bookmarklet for completing forms",
-	"dependencies":{
-		"gulp":"*",
-		"gulp-uglify":"*",
-		"gulp-watch":"*",
-		"gulp-rename":"*",
-		"gulp-replace":"*",
-		"gulp-connect":"*"
+	"dependencies": {
+		"gulp": "*",
+		"gulp-connect": "*",
+		"gulp-rename": "*",
+		"gulp-replace": "*",
+		"gulp-uglify": "1.2.0",
+		"gulp-watch": "*"
 	},
 	"repository": {
-  		"type": "git",
-  		"url": "https://github.com/steelydylan/FormCompleter.git"
+		"type": "git",
+		"url": "https://github.com/steelydylan/FormCompleter.git"
 	},
-	"settings":{
-		"port":"8000",
-		"src":"src",
-		"dest":"dest",
-		"https":false,
-		"js":"FormCompleter.js"
+	"settings": {
+		"port": "8000",
+		"src": "src",
+		"dest": "dest",
+		"https": false,
+		"js": "FormCompleter.js"
 	}
 }

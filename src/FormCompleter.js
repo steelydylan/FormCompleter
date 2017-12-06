@@ -19,11 +19,11 @@
                 json = {},
                 push_counters = {},
                 patterns = {
-                    "validate": /^[a-zA-Z][a-zA-Z0-9_]*(?:\[(?:\d*|[a-zA-Z0-9_]+)\])*$/,
-                    "key":      /[a-zA-Z0-9_]+|(?=\[\])/g,
+                    "validate": /^[a-zA-Z][a-zA-Z0-9_\-]*(?:\[(?:\d*|[a-zA-Z0-9_\-]+)\])*$/,
+                    "key":      /[a-zA-Z0-9_\-]+|(?=\[\])/g,
                     "push":     /^$/,
                     "fixed":    /^\d+$/,
-                    "named":    /^[a-zA-Z0-9_]+$/
+                    "named":    /^[a-zA-Z0-9_\-]+$/
                 };
             this.build = function(base, key, value){
                 base[key] = value;
@@ -38,9 +38,9 @@
             $.each($(this).serializeArray(), function(){
 
                 // skip invalid keys
-                if(!patterns.validate.test(this.name)){
-                    return;
-                }
+                // if(!patterns.validate.test(this.name)){
+                //     return;
+                // }
 
                 var k,
                     keys = this.name.match(patterns.key),
@@ -201,6 +201,7 @@
         });
         $(document).on("click",".formCheckerJson",function(e){
             var val = $(".formChecker_input").val();
+            console.log($(val).serializeObject());
             $(".formChecker_textarea").val(JSON.stringify($(val).serializeObject(),null,4));
             notice($formChecker,"Finished filling in the textarea")
         });
@@ -221,6 +222,7 @@
         $(document).on("click",".formCheckerAuto",function(e){
             var data = JSON.parse($(".formChecker_textarea").val());
             for(var i in data){
+                console.log(i);
                 var $ele = $("[name='"+i+"']");
                 var $eles = $("[name^='"+i+"\\[']");
                 var type = $ele.attr("type") || $eles.attr("type");
