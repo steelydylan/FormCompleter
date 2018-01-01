@@ -1,27 +1,53 @@
 {
-	"version": "0.0.1",
-	"name": "FormCompleter",
-	"scripts": {
-		"start": "gulp"
-	},
-	"description": "This is a bookmarklet for completing forms",
-	"dependencies": {
-		"gulp": "*",
-		"gulp-connect": "*",
-		"gulp-rename": "*",
-		"gulp-replace": "*",
-		"gulp-uglify": "1.2.0",
-		"gulp-watch": "*"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/steelydylan/FormCompleter.git"
-	},
-	"settings": {
-		"port": "8000",
-		"src": "src",
-		"dest": "dest",
-		"https": false,
-		"js": "FormCompleter.js"
-	}
+  "version": "0.0.1",
+  "name": "form-completer",
+  "scripts": {
+    "bundle": "browserify ./src/index.js -t babelify -p licensify -o ./dist/prebuild.js",
+    "build:bookmarklet": "bookmarkletter ./dist/prebuild.js > ./dist/form-completer.js",
+    "serve": "gulp",
+    "build:js": "npm run bundle && npm run build:bookmarklet",
+    "watch:js": "onchange \"src/\" -- npm run build:js",
+    "start": "npm-run-all -p serve watch:js"
+  },
+  "description": "This is a bookmarklet for completing forms",
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-css-import-to-string": "^0.0.2",
+    "babel-plugin-transform-html-import-to-string": "^0.0.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "bookmarkletter": "^0.1.1",
+    "browser-sync": "^2.18.6",
+    "browserify": "^13.1.1",
+    "form-storage": "^1.0.2",
+    "gulp": "*",
+    "gulp-connect": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "gulp-uglify": "1.2.0",
+    "gulp-watch": "*",
+    "jquery": "^3.2.1",
+    "licensify": "^3.1.3",
+    "npm-run-all": "^4.1.2",
+    "onchange": "^3.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steelydylan/FormCompleter.git"
+  },
+  "settings": {
+    "port": "8000",
+    "src": "src",
+    "dist": "dist",
+    "https": false,
+    "js": "form-completer.js"
+  },
+  "bugs": {
+    "url": "https://github.com/steelydylan/FormCompleter/issues"
+  },
+  "homepage": "https://github.com/steelydylan/FormCompleter#readme",
+  "main": "index.js",
+  "author": "steelydylan",
+  "license": "MIT"
 }

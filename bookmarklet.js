@@ -1,1 +1,1 @@
-javascript:(function(){var newScript = document.createElement('script');newScript.src='http://localhost:8000/FormCompleter.js?hoge='+ Math.random();document.body.appendChild(newScript);})();
+javascript:(function(){var newScript = document.createElement('script');newScript.src='http://localhost:8000/form-completer.js?hoge='+ Math.random();document.body.appendChild(newScript);})();
